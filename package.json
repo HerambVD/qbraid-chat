@@ -1,33 +1,57 @@
 {
   "name": "chat-qbraid",
   "displayName": "Chat qBraid",
-  "description": "Visual Studio Code chat extension that interacts with qBraid REST API Endpoints",
+  "description": "Visual Studio Code chat extension that interacts with qBraid REST API Endpoints for model-based chat functionality.",
+  "publisher": "heramb.17",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.96.0"
   },
   "categories": [
-    "Other"
+    "Other",
+    "Chat",
+    "Programming Languages"
   ],
-  "activationEvents": [],
   "main": "./extension.js",
   "contributes": {
-    "commands": [{
-      "command": "chat-qbraid.helloWorld",
-      "title": "Hello World"
-    }]
+    "commands": [
+      {
+        "command": "chat-qbraid.Open",
+        "title": "Open Chat Prompt"
+      },
+      {
+        "command": "chat-qbraid.setApiKey",
+        "title": "Set API Key"
+      }
+    ],
+    "configuration": {
+      "type": "object",
+      "title": "qBraid Chat Configuration",
+      "properties": {
+        "chat-qbraid.apiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Your qBraid API Key for authenticated requests."
+        }
+      }
+    }
   },
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
-    "test": "vscode-test"
+    "test": "vscode-test",
+    "vscode:prepublish": "vsce package"
   },
   "devDependencies": {
-    "@types/vscode": "^1.96.0",
     "@types/mocha": "^10.0.10",
     "@types/node": "20.x",
-    "eslint": "^9.16.0",
+    "@types/vscode": "^1.96.0",
     "@vscode/test-cli": "^0.0.10",
-    "@vscode/test-electron": "^2.4.1"
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.16.0",
+    "vsce": "^2.0.0"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2"
   }
 }
